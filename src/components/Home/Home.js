@@ -1,46 +1,29 @@
 import React from "react";
-import getCurrentWeather from "../../api/weatherbit";
+import { connect } from "react-redux";
 import CurrentTemperature from "../CurrentTemperature/CurrentTemperature";
+import { currentCity, fetchCurrentWeather } from "../../actions";
 import "./Home.css";
 
 class Home extends React.Component {
-  state = { weather: null, city: "Warszawa", fetchingError: false };
-
-  async fetchCurrentWeather() {
-    const cityName = this.state.city;
-    try {
-      const response = await getCurrentWeather(cityName);
-
-      this.setState({
-        weather: response.data.data[0],
-        fetchingError: false
-      });
-    } catch (e) {
-      this.setState({
-        fetchingError: true
-      });
-    }
-  }
-
   componentDidMount() {
-    this.fetchCurrentWeather();
+    this.props.fetchCurrentWeather(this.props.city);
   }
 
   handleInputChange(e) {
-    this.setState({
-      city: e.target.value
-    });
+    this.props.currentCity(e.target.value);
   }
 
   formSubmit(e) {
     e.preventDefault();
-    this.fetchCurrentWeather();
+    this.props.fetchCurrentWeather(this.props.city);
   }
 
   render() {
+    const responseStatus = this.props.currentWeatherResponse.status;
+
     return (
       <div>
-        <div className="ui two column centered grid">
+        <div className="ui one column centered grid">
           <form>
             <div className="ui input home-city-input">
               <input
@@ -56,18 +39,33 @@ class Home extends React.Component {
               Szukaj
             </button>
           </form>
-          {this.state.fetchingError ? (
-            <div className="ui red message">
-              Niestety wystąpił błąd, wpisz raz jeszcze szukane miasto.
-            </div>
-          ) : null}
         </div>
-        {this.state.weather ? (
-          <CurrentTemperature weather={this.state.weather} />
+        {responseStatus === 204 ? (
+          <div className="ui one column centered grid home-fetching-error">
+            <div className="home-fetching-error">
+              <div className="ui red message">
+                Niestety wystąpił błąd, wpisz raz jeszcze szukane miasto.
+              </div>
+            </div>
+          </div>
+        ) : null}
+        {responseStatus === 200 ? (
+          <CurrentTemperature
+            currentWeatherResponse={this.props.currentWeatherResponse}
+          />
         ) : null}
       </div>
     );
   }
 }
 
-export default Home;
+const mapStateToProps = state => {
+  return {
+    city: state.city,
+    currentWeatherResponse: state.currentWeatherResponse
+  };
+};
+
+export default connect(mapStateToProps, { currentCity, fetchCurrentWeather })(
+  Home
+);

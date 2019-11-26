@@ -1,5 +1,9 @@
 .home-city-input {
-  margin-top: 6vh;
+  margin-top: 5vh;
+}
+
+.home-fetching-error {
+  margin-top: 2vh;
 }
 
 .ui.home-city-button.button {
