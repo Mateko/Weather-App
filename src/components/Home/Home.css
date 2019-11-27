@@ -9,3 +9,12 @@
 .ui.home-city-button.button {
   margin-left: 12px;
 }
+
+.home-button-container-hours-forecast {
+  max-width: 50vh;
+  margin-top: 2vh;
+}
+
+.home-button-hours-forecast {
+  width: 100%;
+}

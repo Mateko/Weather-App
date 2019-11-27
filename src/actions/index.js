@@ -1,9 +1,15 @@
-import currentWeather from "../api/weatherbit";
+import { currentWeather, hoursForecast } from "../api/weatherbit";
 
 export const fetchCurrentWeather = city => async dispatch => {
   const response = await currentWeather(city);
 
   dispatch({ type: "CURRENT_WEATHER", payload: response });
+};
+
+export const fetchHoursForecast = city => async dispatch => {
+  const response = await hoursForecast(city);
+
+  dispatch({ type: "HOURS_FORECAST_WEATHER", payload: response });
 };
 
 export const currentCity = city => {

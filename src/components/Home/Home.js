@@ -1,12 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
-import CurrentTemperature from "../CurrentTemperature/CurrentTemperature";
-import { currentCity, fetchCurrentWeather } from "../../actions";
+import CurrentWeather from "../CurrentWeather/CurrentWeather";
+import {
+  currentCity,
+  fetchCurrentWeather,
+  fetchHoursForecast
+} from "../../actions";
 import "./Home.css";
+import LinkButton from "../LinkButton";
 
 class Home extends React.Component {
   componentDidMount() {
-    this.props.fetchCurrentWeather(this.props.city);
+    const currentCity = this.props.city;
+
+    this.props.fetchCurrentWeather(currentCity);
+    this.props.fetchHoursForecast(currentCity);
   }
 
   handleInputChange(e) {
@@ -15,7 +23,10 @@ class Home extends React.Component {
 
   formSubmit(e) {
     e.preventDefault();
-    this.props.fetchCurrentWeather(this.props.city);
+    const currentCity = this.props.city;
+
+    this.props.fetchCurrentWeather(currentCity);
+    this.props.fetchHoursForecast(currentCity);
   }
 
   render() {
@@ -25,7 +36,7 @@ class Home extends React.Component {
       <div>
         <div className="ui one column centered grid">
           <form>
-            <div className="ui input home-city-input">
+            <div className="ui column input home-city-input">
               <input
                 type="text"
                 placeholder="Nazwa miejscowości"
@@ -42,7 +53,7 @@ class Home extends React.Component {
         </div>
         {responseStatus === 204 ? (
           <div className="ui one column centered grid home-fetching-error">
-            <div className="home-fetching-error">
+            <div className="column home-fetching-error">
               <div className="ui red message">
                 Niestety wystąpił błąd, wpisz raz jeszcze szukane miasto.
               </div>
@@ -50,10 +61,21 @@ class Home extends React.Component {
           </div>
         ) : null}
         {responseStatus === 200 ? (
-          <CurrentTemperature
+          <CurrentWeather
             currentWeatherResponse={this.props.currentWeatherResponse}
           />
         ) : null}
+        <div className="ui one column centered grid">
+          <div className="column home-button-container-hours-forecast">
+            <div className="home-button-hours-forecast">
+              <LinkButton
+                message="Pogoda na najbliższe 24h"
+                path="/twenty_four_hours_forecast"
+                additionalOption="fluid"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -66,6 +88,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { currentCity, fetchCurrentWeather })(
-  Home
-);
+export default connect(mapStateToProps, {
+  currentCity,
+  fetchCurrentWeather,
+  fetchHoursForecast
+})(Home);

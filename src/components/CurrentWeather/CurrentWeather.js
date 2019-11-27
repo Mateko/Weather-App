@@ -1,7 +1,9 @@
 import React from "react";
-import "./CurrentTemperature.css";
+import "./CurrentWeather.css";
 
-const CurrentTemperature = ({ currentWeatherResponse }) => {
+const CurrentWeather = ({ currentWeatherResponse }) => {
+  const currentWeather = currentWeatherResponse.data.data[0];
+
   const {
     app_temp,
     city_name,
@@ -9,9 +11,9 @@ const CurrentTemperature = ({ currentWeatherResponse }) => {
     wind_spd,
     wind_cdir,
     country_code
-  } = currentWeatherResponse.data.data[0];
+  } = currentWeather;
 
-  const { icon } = currentWeatherResponse.data.data[0].weather;
+  const { icon } = currentWeather.weather;
 
   return (
     <div className="ui center aligned grid">
@@ -58,4 +60,4 @@ const CurrentTemperature = ({ currentWeatherResponse }) => {
   );
 };
 
-export default CurrentTemperature;
+export default CurrentWeather;
