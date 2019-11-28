@@ -52,10 +52,10 @@ class Home extends React.Component {
           </form>
         </div>
         {responseStatus === 204 ? (
-          <div className="ui one column centered grid home-fetching-error">
+          <div className="ui one column centered grid">
             <div className="column home-fetching-error">
               <div className="ui red message">
-                Niestety wystąpił błąd, wpisz raz jeszcze szukane miasto.
+                Niestety wystąpił błąd, wpisz jeszcze raz szukane miasto.
               </div>
             </div>
           </div>
@@ -71,7 +71,9 @@ class Home extends React.Component {
               <LinkButton
                 message="Pogoda na najbliższe 24h"
                 path="/twenty_four_hours_forecast"
-                additionalOption="fluid"
+                additionalOption={
+                  responseStatus === 204 ? "fluid disabled" : "fluid"
+                }
               />
             </div>
           </div>

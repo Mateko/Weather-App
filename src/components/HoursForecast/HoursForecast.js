@@ -1,20 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import { currentCity } from "../../actions";
+import LinkButton from "../LinkButton";
+import Loader from "../Loader";
 import "./HoursForecast.css";
 
 const HoursForecast = ({ hoursForecastResponse }) => {
-  const hoursForecast = hoursForecastResponse.data.data;
-  const city = hoursForecastResponse.data.city_name;
-  const countryCode = hoursForecastResponse.data.country_code;
-
   const displayHoursForecast = () => {
+    const hoursForecast = hoursForecastResponse.data.data;
     const formatDate = date => {
       return date.split("T")[1].slice(0, 5);
     };
 
     return hoursForecast.map(hour => {
-      console.log(hour);
       return (
         <div className="item hourly-weather-forecast-item">
           <img
@@ -36,20 +34,31 @@ const HoursForecast = ({ hoursForecastResponse }) => {
       );
     });
   };
-  return (
-    <div>
-      <div className="ui one column centered grid">
-        <div className="column hourly-weather-forecast-list-container">
-          <h1 className="hourly-weather-forecast-header">
-            {city}, {countryCode}
-          </h1>
-          <div className="ui middle aligned divided list">
-            {displayHoursForecast()}
+
+  if (hoursForecastResponse.length !== 0) {
+    return (
+      <div>
+        <div className="ui one column centered grid">
+          <div className="column hourly-weather-forecast-list-container">
+            <h1 className="hourly-weather-forecast-header">
+              {hoursForecastResponse.data.city_name},{" "}
+              {hoursForecastResponse.data.country_code}
+            </h1>
+            <div className="ui middle aligned divided list">
+              {hoursForecastResponse ? displayHoursForecast() : null}
+            </div>
+            <LinkButton
+              message="Wróć na główną stronę"
+              path="/"
+              additionalOption="fluid"
+            />
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <Loader />;
+  }
 };
 
 const mapStateToProps = state => {

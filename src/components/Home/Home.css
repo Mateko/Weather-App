@@ -1,9 +1,10 @@
 .home-city-input {
-  margin-top: 5vh;
+  margin-top: 4vh;
 }
 
 .home-fetching-error {
   margin-top: 2vh;
+  max-width: 50vh;
 }
 
 .ui.home-city-button.button {
@@ -17,4 +18,8 @@
 
 .home-button-hours-forecast {
   width: 100%;
+}
+
+a[disabled] {
+  pointer-events: none;
 }
