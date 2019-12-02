@@ -17,8 +17,8 @@ const CurrentWeather = ({ currentWeatherResponse }) => {
 
   return (
     <div className="ui center aligned grid">
-      <div className="column current-temperature-container ">
-        <div className="sixteen wide column current-temperature-city-name">
+      <div className="column current-weather-container ">
+        <div className="sixteen wide column current-weather-city-name">
           <h1>
             {city_name}, {country_code}
           </h1>
@@ -26,7 +26,7 @@ const CurrentWeather = ({ currentWeatherResponse }) => {
         </div>
         <div className="sixteen wide column ">
           <img
-            className="current-temperature-icon"
+            className="current-weather-icon"
             alt="Weather Icon"
             src={`https://www.weatherbit.io/static/img/icons/${icon}.png`}
           />

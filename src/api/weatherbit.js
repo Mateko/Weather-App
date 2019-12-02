@@ -18,3 +18,11 @@ export const hoursForecast = city => {
 
   return response;
 };
+
+export const daysForecast = city => {
+  const response = weatherbit.get(
+    `/forecast/daily?city=${city}&key=${API_KEY}`
+  );
+
+  return response;
+};

@@ -1,5 +1,5 @@
 .home-city-input {
-  margin-top: 4vh;
+  margin-top: 3vh;
 }
 
 .home-fetching-error {
@@ -13,7 +13,7 @@
 
 .home-button-container-hours-forecast {
   max-width: 50vh;
-  margin-top: 2vh;
+  margin-top: 1vh;
 }
 
 .home-button-hours-forecast {
@@ -22,4 +22,9 @@
 
 a[disabled] {
   pointer-events: none;
+}
+
+.home-second-button-container-hours-forecast {
+  max-width: 50vh;
+  margin-top: -15px;
 }

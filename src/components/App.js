@@ -2,16 +2,14 @@ import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./Home/Home";
 import HoursForecast from "./HoursForecast/HoursForecast";
+import DaysForecast from "./DaysForecast/DaysForecast";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Route path="/" exact component={Home} />
-      <Route
-        path="/twenty_four_hours_forecast"
-        exact
-        component={HoursForecast}
-      />
+      <Route path="/hours_forecast" exact component={HoursForecast} />
+      <Route path="/days_forecast" exact component={DaysForecast} />
     </BrowserRouter>
   );
 };

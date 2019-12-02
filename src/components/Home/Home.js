@@ -4,17 +4,23 @@ import CurrentWeather from "../CurrentWeather/CurrentWeather";
 import {
   currentCity,
   fetchCurrentWeather,
-  fetchHoursForecast
+  fetchHoursForecast,
+  fetchDaysForecast
 } from "../../actions";
 import "./Home.css";
 import LinkButton from "../LinkButton";
 
 class Home extends React.Component {
-  componentDidMount() {
+  fetchData() {
     const currentCity = this.props.city;
 
     this.props.fetchCurrentWeather(currentCity);
     this.props.fetchHoursForecast(currentCity);
+    this.props.fetchDaysForecast(currentCity);
+  }
+
+  componentDidMount() {
+    this.fetchData();
   }
 
   handleInputChange(e) {
@@ -23,10 +29,7 @@ class Home extends React.Component {
 
   formSubmit(e) {
     e.preventDefault();
-    const currentCity = this.props.city;
-
-    this.props.fetchCurrentWeather(currentCity);
-    this.props.fetchHoursForecast(currentCity);
+    this.fetchData();
   }
 
   render() {
@@ -70,7 +73,20 @@ class Home extends React.Component {
             <div className="home-button-hours-forecast">
               <LinkButton
                 message="Pogoda na najbliższe 24h"
-                path="/twenty_four_hours_forecast"
+                path="/hours_forecast"
+                additionalOption={
+                  responseStatus === 204 ? "fluid disabled" : "fluid"
+                }
+              />
+            </div>
+          </div>
+        </div>
+        <div className="ui one column centered grid">
+          <div className="column home-second-button-container-hours-forecast">
+            <div className="home-button-hours-forecast">
+              <LinkButton
+                message="Pogoda na najbliższe 16 dni"
+                path="/days_forecast"
                 additionalOption={
                   responseStatus === 204 ? "fluid disabled" : "fluid"
                 }
@@ -93,5 +109,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   currentCity,
   fetchCurrentWeather,
-  fetchHoursForecast
+  fetchHoursForecast,
+  fetchDaysForecast
 })(Home);
