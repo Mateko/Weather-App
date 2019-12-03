@@ -3,7 +3,7 @@ import "./CurrentWeather.css";
 
 const CurrentWeather = ({ currentWeatherResponse }) => {
   const currentWeather = currentWeatherResponse.data.data[0];
-
+  console.log(currentWeather);
   const {
     app_temp,
     city_name,

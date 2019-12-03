@@ -3,11 +3,7 @@ import React from "react";
 
 const LinkButton = ({ message, path, additionalOption }) => {
   return (
-    <Link
-      className={`ui blue button ${additionalOption}`}
-      role="button"
-      to={path}
-    >
+    <Link className={`ui blue button ${additionalOption}`} to={path}>
       {message}
     </Link>
   );

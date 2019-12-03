@@ -71,9 +71,9 @@ const DaysForecast = ({ daysForecastResponse }) => {
   }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ weather }) => {
   return {
-    daysForecastResponse: state.daysForecastResponse
+    daysForecastResponse: weather.daysForecast
   };
 };
 

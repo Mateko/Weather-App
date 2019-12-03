@@ -69,9 +69,9 @@ const HoursForecast = ({ hoursForecastResponse }) => {
   }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ weather }) => {
   return {
-    hoursForecastResponse: state.hoursForecastResponse
+    hoursForecastResponse: weather.hoursForecast
   };
 };
 

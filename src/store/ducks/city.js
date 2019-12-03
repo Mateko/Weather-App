@@ -1,3 +1,5 @@
+export const SELECTED_CITY = "city/SELECTED_CITY";
+
 export default (state = "Warszawa", action) => {
   switch (action.type) {
     case "SELECTED_CITY":
@@ -5,4 +7,11 @@ export default (state = "Warszawa", action) => {
     default:
       return state;
   }
+};
+
+export const currentCity = city => {
+  return {
+    type: "SELECTED_CITY",
+    payload: city
+  };
 };

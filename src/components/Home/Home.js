@@ -2,11 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import CurrentWeather from "../CurrentWeather/CurrentWeather";
 import {
-  currentCity,
   fetchCurrentWeather,
   fetchHoursForecast,
   fetchDaysForecast
-} from "../../actions";
+} from "../../store/ducks/weather";
+
+import { currentCity } from "../../store/ducks/city";
+
 import "./Home.css";
 import LinkButton from "../LinkButton";
 
@@ -33,8 +35,8 @@ class Home extends React.Component {
   }
 
   render() {
+    console.log(this.props.currentWeatherResponse);
     const responseStatus = this.props.currentWeatherResponse.status;
-
     return (
       <div>
         <div className="ui one column centered grid">
@@ -58,7 +60,7 @@ class Home extends React.Component {
           <div className="ui one column centered grid">
             <div className="column home-fetching-error">
               <div className="ui red message">
-                Niestety wystąpił błąd, wpisz jeszcze raz szukane miasto.
+                Niestety, nie znaleźliśmy podanego miasta
               </div>
             </div>
           </div>
@@ -99,10 +101,10 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ city, weather }) => {
   return {
-    city: state.city,
-    currentWeatherResponse: state.currentWeatherResponse
+    city: city,
+    currentWeatherResponse: weather.currentWeather
   };
 };
 
