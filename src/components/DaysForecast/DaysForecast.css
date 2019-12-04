@@ -18,8 +18,11 @@
 
 .days-forecast-back-button {
   margin-bottom: 14px;
+  max-width: 60vh;
+  margin-right: 22px;
 }
 
 .days-forecast-second-back-button {
   margin-top: 24px;
+  margin-right: 22px;
 }

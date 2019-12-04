@@ -5,12 +5,12 @@ const CurrentWeather = ({ currentWeatherResponse }) => {
   const currentWeather = currentWeatherResponse.data.data[0];
   console.log(currentWeather);
   const {
-    app_temp,
-    city_name,
+    appTemp,
+    cityName,
     temp,
-    wind_spd,
-    wind_cdir,
-    country_code
+    windSpd,
+    windCdir,
+    countryCode
   } = currentWeather;
 
   const { icon } = currentWeather.weather;
@@ -20,7 +20,7 @@ const CurrentWeather = ({ currentWeatherResponse }) => {
       <div className="column current-weather-container ">
         <div className="sixteen wide column current-weather-city-name">
           <h1>
-            {city_name}, {country_code}
+            {cityName}, {countryCode}
           </h1>
           <hr width="35%" />
         </div>
@@ -41,19 +41,19 @@ const CurrentWeather = ({ currentWeatherResponse }) => {
           <h3>Temeperatura odczuwalna</h3>
         </div>
         <div className="sixteen wide column current-temeperature-values">
-          <p>{app_temp} &#186; C </p>
+          <p>{appTemp} &#186; C </p>
         </div>
         <div className="sixteen wide column">
           <h3>Prędkość wiatru</h3>
         </div>
         <div className="sixteen wide column current-temeperature-values">
-          <p>{wind_spd} m/s </p>
+          <p>{windSpd} m/s </p>
         </div>
         <div className="sixteen wide column">
           <h3>Kierunek wiatru</h3>
         </div>
         <div className="sixteen wide column current-temeperature-values">
-          <p>{wind_cdir} </p>
+          <p>{windCdir} </p>
         </div>
       </div>
     </div>

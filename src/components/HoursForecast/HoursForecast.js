@@ -16,7 +16,7 @@ const HoursForecast = ({ hoursForecastResponse }) => {
       return (
         <div
           className="item hourly-weather-forecast-item"
-          key={hour.wind_gust_spd}
+          key={hour.windGustSpd}
         >
           <img
             className="ui avatar image hourly-weather-forecast-icon"
@@ -26,7 +26,7 @@ const HoursForecast = ({ hoursForecastResponse }) => {
           <div className="content">
             <p>
               <span className="hourly-weather-forecast-hour">
-                {formatDate(hour.timestamp_local)}
+                {formatDate(hour.timestampLocal)}
               </span>
               <span className="hourly-weather-forecast-temperature">
                 {hour.temp} &#186; C
@@ -44,8 +44,8 @@ const HoursForecast = ({ hoursForecastResponse }) => {
         <div className="ui one column centered grid">
           <div className="column hourly-weather-forecast-list-container">
             <h1 className="hourly-weather-forecast-header">
-              {hoursForecastResponse.data.city_name},{" "}
-              {hoursForecastResponse.data.country_code}
+              {hoursForecastResponse.data.cityName},{" "}
+              {hoursForecastResponse.data.countryCode}
             </h1>
             <LinkButton
               message="Wróć na główną stronę"

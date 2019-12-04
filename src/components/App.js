@@ -8,8 +8,8 @@ const App = () => {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Route path="/" exact component={Home} />
-      <Route path="/hours_forecast" exact component={HoursForecast} />
-      <Route path="/days_forecast" exact component={DaysForecast} />
+      <Route path="/hours_forecast" component={HoursForecast} />
+      <Route path="/days_forecast" component={DaysForecast} />
     </BrowserRouter>
   );
 };

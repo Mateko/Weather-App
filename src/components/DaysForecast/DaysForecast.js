@@ -23,11 +23,11 @@ const DaysForecast = ({ daysForecastResponse }) => {
             alt="Weather Icon"
           />
           <p>Średnia temperatura:</p>
-          <p>{day.max_temp} &#186; C</p>
+          <p>{day.temp} &#186; C</p>
           <p>Maksymalna temperatura:</p>
-          <p>{day.max_temp} &#186; C</p>
+          <p>{day.maxTemp} &#186; C</p>
           <p>Minimalna temperatura: </p>
-          <p>{day.min_temp} &#186; C</p>
+          <p>{day.minTemp} &#186; C</p>
         </div>
       );
     });
@@ -39,8 +39,8 @@ const DaysForecast = ({ daysForecastResponse }) => {
         <div className="ui one grid">
           <div className="sixteen wide column">
             <h1 className="days-forecast-header">
-              {daysForecastResponse.data.city_name},{" "}
-              {daysForecastResponse.data.country_code}
+              {daysForecastResponse.data.cityName},{" "}
+              {daysForecastResponse.data.countryCode}
             </h1>
           </div>
         </div>

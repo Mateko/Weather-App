@@ -1,8 +1,13 @@
 import axios from "axios";
 import { API_KEY } from "./apiKey";
+import humps from "humps";
 
 const weatherbit = axios.create({
-  baseURL: "https://api.weatherbit.io/v2.0/"
+  baseURL: "https://api.weatherbit.io/v2.0/",
+  transformResponse: [
+    ...axios.defaults.transformResponse,
+    data => humps.camelizeKeys(data)
+  ]
 });
 
 export const currentWeather = city => {
