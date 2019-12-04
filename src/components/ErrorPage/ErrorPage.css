@@ -1,0 +1,20 @@
+.error-header {
+  text-align: center;
+}
+
+.error-container {
+  margin-top: 20vh;
+}
+
+.error-back-button {
+  max-width: 45vh;
+}
+
+.error-icon-container {
+  text-align: center;
+  font-size: 180px;
+}
+
+.error-icon {
+  color: #ee4540;
+}

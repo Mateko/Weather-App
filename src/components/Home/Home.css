@@ -1,5 +1,6 @@
-.home-city-input {
+.home-city-input-container {
   margin-top: 3vh;
+  text-align: center;
 }
 
 .home-fetching-error {
@@ -9,22 +10,21 @@
 
 .ui.home-city-button.button {
   margin-left: 12px;
-}
-
-.home-button-container-hours-forecast {
-  max-width: 50vh;
-  margin-top: 1vh;
-}
-
-.home-button-hours-forecast {
-  width: 100%;
+  width: 100px;
 }
 
 a[disabled] {
   pointer-events: none;
 }
 
-.home-second-button-container-hours-forecast {
-  max-width: 50vh;
-  margin-top: -15px;
+.home-first-button {
+  margin-top: 14px;
+}
+
+.ui.input .home-city-input {
+  border-color: #2a75bb;
+  font-weight: bold;
+  font-size: 14px;
+  border-width: 2px;
+  text-align: center;
 }

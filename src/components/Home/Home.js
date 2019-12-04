@@ -1,24 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import CurrentWeather from "../CurrentWeather/CurrentWeather";
-import {
-  fetchCurrentWeather,
-  fetchHoursForecast,
-  fetchDaysForecast
-} from "../../store/ducks/weather";
-
+import { fetchAllForecasts } from "../../store/ducks/weather";
 import { currentCity } from "../../store/ducks/city";
-
-import "./Home.css";
+import { Redirect } from "react-router-dom";
 import LinkButton from "../LinkButton";
+import "./Home.css";
 
 class Home extends React.Component {
   fetchData() {
     const currentCity = this.props.city;
 
-    this.props.fetchCurrentWeather(currentCity);
-    this.props.fetchHoursForecast(currentCity);
-    this.props.fetchDaysForecast(currentCity);
+    this.props.fetchAllForecasts(currentCity);
   }
 
   componentDidMount() {
@@ -36,15 +29,23 @@ class Home extends React.Component {
 
   render() {
     const responseStatus = this.props.currentWeatherResponse.status;
+    const { error, city, fetching } = this.props;
+
+    if (error !== null) {
+      return <Redirect to="/error" />;
+    }
+
     return (
       <div>
         <div className="ui one column centered grid">
           <form>
-            <div className="ui column input home-city-input">
+            <div className="ui column input home-city-input-container">
               <input
                 type="text"
                 placeholder="Nazwa miejscowości"
                 onChange={this.handleInputChange.bind(this)}
+                value={city}
+                className="home-city-input"
               />
             </div>
             <button
@@ -64,37 +65,24 @@ class Home extends React.Component {
             </div>
           </div>
         ) : null}
-        {responseStatus === 200 ? (
-          <CurrentWeather
-            currentWeatherResponse={this.props.currentWeatherResponse}
+        <CurrentWeather
+          currentWeatherResponse={this.props.currentWeatherResponse}
+          fetching={fetching}
+        />
+        <div className="home-first-button">
+          <LinkButton
+            message="Pogoda na najbliższe 24h"
+            path="/hours_forecast"
+            additionalOption={
+              responseStatus === 204 ? "fluid disabled" : "fluid"
+            }
           />
-        ) : null}
-        <div className="ui one column centered grid">
-          <div className="column home-button-container-hours-forecast">
-            <div className="home-button-hours-forecast">
-              <LinkButton
-                message="Pogoda na najbliższe 24h"
-                path="/hours_forecast"
-                additionalOption={
-                  responseStatus === 204 ? "fluid disabled" : "fluid"
-                }
-              />
-            </div>
-          </div>
         </div>
-        <div className="ui one column centered grid">
-          <div className="column home-second-button-container-hours-forecast">
-            <div className="home-button-hours-forecast">
-              <LinkButton
-                message="Pogoda na najbliższe 16 dni"
-                path="/days_forecast"
-                additionalOption={
-                  responseStatus === 204 ? "fluid disabled" : "fluid"
-                }
-              />
-            </div>
-          </div>
-        </div>
+        <LinkButton
+          message="Pogoda na najbliższe 16 dni"
+          path="/days_forecast"
+          additionalOption={responseStatus === 204 ? "fluid disabled" : "fluid"}
+        />
       </div>
     );
   }
@@ -102,14 +90,14 @@ class Home extends React.Component {
 
 const mapStateToProps = ({ city, weather }) => {
   return {
-    city: city,
-    currentWeatherResponse: weather.currentWeather
+    city,
+    currentWeatherResponse: weather.currentWeather,
+    fetching: weather.fetchingCurrentWeather,
+    error: weather.error
   };
 };
 
 export default connect(mapStateToProps, {
   currentCity,
-  fetchCurrentWeather,
-  fetchHoursForecast,
-  fetchDaysForecast
+  fetchAllForecasts
 })(Home);

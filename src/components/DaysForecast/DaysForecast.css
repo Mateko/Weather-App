@@ -3,7 +3,7 @@
 }
 
 .days-forecast-days-container {
-  max-width: 60vh;
+  max-width: 50vh;
   margin-left: 3px;
 }
 
@@ -11,18 +11,7 @@
   text-align: center;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   border-radius: 7px;
-  margin-left: 17px;
+  margin-left: 15px;
   margin-top: 10px;
   position: relative;
-}
-
-.days-forecast-back-button {
-  margin-bottom: 14px;
-  max-width: 60vh;
-  margin-right: 22px;
-}
-
-.days-forecast-second-back-button {
-  margin-top: 24px;
-  margin-right: 22px;
 }
