@@ -8,10 +8,8 @@ const days = {
   6: "Sobota"
 };
 
-const nameOfTheDay = date => {
+export const nameOfTheDay = date => {
   const day = new Date(date).getDay();
 
   return days[day];
 };
-
-export default nameOfTheDay;

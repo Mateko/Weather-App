@@ -35,7 +35,6 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log(this.props.currentWeatherResponse);
     const responseStatus = this.props.currentWeatherResponse.status;
     return (
       <div>

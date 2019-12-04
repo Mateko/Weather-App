@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./Home/Home";
-import HoursForecast from "./HoursForecast/HoursForecast";
+import HoursForecast from "./HoursForecastList/HoursForecastList";
 import DaysForecast from "./DaysForecast/DaysForecast";
 
 const App = () => {
