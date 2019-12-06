@@ -8,11 +8,12 @@
 
 .error-back-button {
   max-width: 45vh;
+  margin-top: 20px;
 }
 
 .error-icon-container {
   text-align: center;
-  font-size: 180px;
+  font-size: 96px;
 }
 
 .error-icon {

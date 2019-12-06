@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import LinkButton from "../LinkButton";
-
 import "./ErrorPage.css";
-const ErrorPage = ({ error }) => {
+
+const ErrorPage = ({ error, pageNotFound }) => {
   return (
     <div>
       <div className="ui one grid">
@@ -11,13 +12,21 @@ const ErrorPage = ({ error }) => {
           <div className="error-icon-container">
             <i className="close icon error-icon"></i>
           </div>
-          <h1 className="error-header">{error.message}</h1>
+          <h1 className="error-header">
+            {pageNotFound ? (
+              pageNotFound
+            ) : error ? (
+              error.message
+            ) : (
+              <Redirect to="/" />
+            )}
+          </h1>
         </div>
       </div>
       <LinkButton
         message="Wróc do głównego ekranu"
         path="/"
-        additionalOption={"fluid"}
+        additionalOption={"fluid red"}
       />
     </div>
   );

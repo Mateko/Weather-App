@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import CurrentWeather from "../CurrentWeather/CurrentWeather";
 import { fetchAllForecasts } from "../../store/ducks/weather";
 import { currentCity } from "../../store/ducks/city";
 import { Redirect } from "react-router-dom";
 import LinkButton from "../LinkButton";
+import CurrentWeather from "../CurrentWeather/CurrentWeather";
+import CityNotFound from "../CityNotFound";
 import "./Home.css";
 
 class Home extends React.Component {
@@ -57,18 +58,13 @@ class Home extends React.Component {
           </form>
         </div>
         {responseStatus === 204 ? (
-          <div className="ui one column centered grid">
-            <div className="column home-fetching-error">
-              <div className="ui red message">
-                Niestety, nie znaleźliśmy podanego miasta
-              </div>
-            </div>
-          </div>
-        ) : null}
-        <CurrentWeather
-          currentWeatherResponse={this.props.currentWeatherResponse}
-          fetching={fetching}
-        />
+          <CityNotFound />
+        ) : (
+          <CurrentWeather
+            currentWeatherResponse={this.props.currentWeatherResponse}
+            fetching={fetching}
+          />
+        )}
         <div className="home-first-button">
           <LinkButton
             message="Pogoda na najbliższe 24h"

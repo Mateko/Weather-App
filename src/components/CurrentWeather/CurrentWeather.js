@@ -5,7 +5,6 @@ import Loader from "../Loader";
 const CurrentWeather = ({ currentWeatherResponse, fetching }) => {
   if (!fetching) {
     const currentWeather = currentWeatherResponse.data.data[0];
-
     const {
       appTemp,
       cityName,
