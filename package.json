@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://mateko.github.io/Weather-App",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "gh-pages": "^2.1.1",
     "humps": "^2.0.1",
     "react": "^16.12.0",
